@@ -49,7 +49,13 @@ class ListaDatas  : public Lista<Data>{
 	}
 
 	void mostraMediana() override {
-		cout << "Aqui vai mostrar a mediana da lista de datas" << endl;
+		vector<Data> listaOrganizada = organizaDatas();
+		int N = listaOrganizada.size();
+		if (N==0){
+			cout<< "Lista vazia";
+			return;
+		}
+		cout << listaOrganizada[N/2].toString() << endl;
 	}
 	
 	void mostraMenor() override {
