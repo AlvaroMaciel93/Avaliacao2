@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class ListaDatas  {
+class ListaDatas  : public Lista<Data>{
 	vector<Data> lista;
 	
 	public:
@@ -14,18 +14,18 @@ class ListaDatas  {
 	elementos v�o existir na lista e depois
 	solicita a digita��o de cada um deles
 	*/	
-	void entradaDeDados() {
+	void entradaDeDados() override {
 		
 	}
 	
-	void mostraMediana() {
+	void mostraMediana() override {
 		cout << "Aqui vai mostrar a mediana da lista de datas" << endl;
 	}
 	
-	void mostraMenor() {
+	void mostraMenor() override {
 		cout << "Aqui vai mostrar a primeira data cronologicamente" << endl;
 	}
-	void mostraMaior() {
+	void mostraMaior() override {
 		cout << "aqui vai mostrar a ultima data cronologicamente" << endl;
 	}
 };
