@@ -59,7 +59,13 @@ class ListaDatas  : public Lista<Data>{
 	}
 	
 	void mostraMenor() override {
-		cout << "Aqui vai mostrar a primeira data cronologicamente" << endl;
+		vector<Data> listaOrganizada = organizaDatas();
+		if (listaOrganizada.size()==0){
+			cout<< "Lista vazia";
+			return;
+		}
+		vector<Data>::iterator it = listaOrganizada.begin();
+		cout << it->toString() << endl;
 	}
 	void mostraMaior() override {
 		cout << "aqui vai mostrar a ultima data cronologicamente" << endl;
