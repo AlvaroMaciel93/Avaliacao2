@@ -25,6 +25,29 @@ class ListaDatas  : public Lista<Data>{
 		}
 	}
 	
+	vector<Data> organizaDatas() {
+		int N = lista.size();
+		if(N==0){
+			cout << "Lista vazia" << endl;
+			return lista;
+		}
+		vector<Data> listaOrganizada = lista;
+		bool trocou;
+		for(int i=0;i<N-1;i++){
+			trocou = false;
+			for(int j=0; j < n-i-1; j++){
+				if( Data::compara(listaOrganizada[j],listaOrganizada[j+1]) == 1){
+					swap(listaOrganizada[j],listaOrganizada[j+1]);
+					trocou = true;
+				}
+			}
+			if (trocou == false){
+				break;
+			}
+		}
+		return listaOrganizada;
+	}
+
 	void mostraMediana() override {
 		cout << "Aqui vai mostrar a mediana da lista de datas" << endl;
 	}
