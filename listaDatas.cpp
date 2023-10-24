@@ -15,7 +15,14 @@ class ListaDatas  : public Lista<Data>{
 	solicita a digita��o de cada um deles
 	*/	
 	void entradaDeDados() override {
-		
+		int N, dia, mes, ano;
+		cout << "Digite a quantidade de datas que serão armazenadas na lista";
+		cin >> N;
+		for(int i=0;i<N;i++){
+			cout << "Digite o dia, mes e ano da data" << endl;
+			cin >> dia >> mes >> ano;
+			lista.push_back(Data (dia,mes,ano));
+		}
 	}
 	
 	void mostraMediana() override {
