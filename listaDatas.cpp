@@ -65,7 +65,7 @@ class ListaDatas  : public Lista<Data>{
 			return;
 		}
 		vector<Data>::iterator it = listaOrganizada.begin();
-		cout << it->toString() << endl;
+		cout << "Maior das datas: " << it->toString() << endl;
 	}
 	void mostraMaior() override {
 		vector<Data> listaOrganizada = organizaDatas();
@@ -75,7 +75,7 @@ class ListaDatas  : public Lista<Data>{
 		}
 		vector<Data>::iterator it = listaOrganizada.end();
 		it--;
-		cout << it->toString() << endl;
+		cout << "Menor das datas: " << it->toString() << endl;
 	}
 	void  listarEmOrdem() override {
 		vector<Data> listaOrganizada = organizaDatas();
@@ -86,4 +86,5 @@ class ListaDatas  : public Lista<Data>{
 		for (auto it = listaOrganizada.begin(); it !=listaOrganizada.end(); it++)
 			cout << it->toString() << endl;
 	}
+	
 };
