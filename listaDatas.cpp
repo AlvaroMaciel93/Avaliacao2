@@ -68,12 +68,22 @@ class ListaDatas  : public Lista<Data>{
 		cout << it->toString() << endl;
 	}
 	void mostraMaior() override {
-				vector<Data> listaOrganizada = organizaDatas();
+		vector<Data> listaOrganizada = organizaDatas();
 		if (listaOrganizada.size()==0){
 			cout<< "Lista vazia";
 			return;
 		}
 		vector<Data>::iterator it = listaOrganizada.end();
+		it--;
 		cout << it->toString() << endl;
+	}
+	void  listarEmOrdem() override {
+		vector<Data> listaOrganizada = organizaDatas();
+		if (listaOrganizada.size()==0){
+			cout<< "Lista vazia";
+			return;
+		}
+		for (auto it = listaOrganizada.begin(); it !=listaOrganizada.end(); it++)
+			cout << it->toString() << endl;
 	}
 };
