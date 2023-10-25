@@ -47,7 +47,7 @@ public:
 
 	void mostraMenor() override
 	{
-		cout << "Aqui vai mostrar o menor dos salários" << endl;
+		cout << "Menor dos salários: " << endl;
 		if (!elementos.empty())
 		{
 			float menorSalario = elementos[0];
@@ -67,7 +67,7 @@ public:
 	}
 	void mostraMaior() override
 	{
-		cout << "Aqui vai mostrar o maior dos salários" << endl;
+		cout << "Maior dos salários: " << endl;
 		if (!elementos.empty())
 		{
 			float maiorSalario = elementos[0];
