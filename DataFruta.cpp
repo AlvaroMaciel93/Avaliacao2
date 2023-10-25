@@ -114,7 +114,6 @@ public:
 	virtual void mostraMaior() = 0;
 };
 
-
 class ListaNomes : public Lista<string>
 {
 public:
@@ -128,108 +127,130 @@ public:
 		for (int i = 0; i < n; i++)
 		{
 			string nome;
-            cout << "Nome " << i + 1 << ": ";
-            getline(cin, nome);
+			cout << "Nome " << i + 1 << ": ";
+			getline(cin, nome);
 			adicionar(nome);
 		}
 	}
 
-	void mostraMediana() override {
-        	if (elementos.empty()) {
-            		cout << "A lista de nomes está vazia." << endl;
-            	return;
-        	}
-        	//cout << "Calculando a mediana dos nomes..." << endl;
-        	sort(elementos.begin(), elementos.end()); // Ordena a lista
+	void mostraMediana() override
+	{
+		if (elementos.empty())
+		{
+			cout << "A lista de nomes está vazia." << endl;
+			return;
+		}
+		// cout << "Calculando a mediana dos nomes..." << endl;
+		sort(elementos.begin(), elementos.end()); // Ordena a lista
 
-        	int tamanho = elementos.size();
-        	int meio1 = tamanho / 2 - 1;
+		int tamanho = elementos.size();
+		int meio1 = tamanho / 2 - 1;
 
-        	// Se a quantidade de elementos é par, escolha o primeiro deles
-        	if (tamanho % 2 == 0) {
-            		cout << "Mediana dos nomes: " << elementos[meio1] << endl;
-        	}
-		else {
-            		cout << "Mediana dos nomes: " << elementos[meio1 + 1] << endl;
-        	}
-    	}
-	void mostraMenor() override {
-		//cout << "Mostrando o primeiro nome alfabeticamente..." << endl;
-		if (!this->elementos.empty()) {
+		// Se a quantidade de elementos é par, escolha o primeiro deles
+		if (tamanho % 2 == 0)
+		{
+			cout << "Mediana dos nomes: " << elementos[meio1] << endl;
+		}
+		else
+		{
+			cout << "Mediana dos nomes: " << elementos[meio1 + 1] << endl;
+		}
+	}
+	void mostraMenor() override
+	{
+		// cout << "Mostrando o primeiro nome alfabeticamente..." << endl;
+		if (!this->elementos.empty())
+		{
 			cout << "Menor nome: " << *min_element(this->elementos.begin(), this->elementos.end()) << endl;
 		}
 	}
 
-	void mostraMaior() override {
-		//cout << "Mostrando o último nome alfabeticamente..." << endl;
-		if (!this->elementos.empty()) {
+	void mostraMaior() override
+	{
+		// cout << "Mostrando o último nome alfabeticamente..." << endl;
+		if (!this->elementos.empty())
+		{
 			cout << "Maior nome: " << *max_element(this->elementos.begin(), this->elementos.end()) << endl;
 		}
 	}
 };
 
-class ListaDatas  : public Lista<Data>{
+class ListaDatas : public Lista<Data>
+{
 	vector<Data> lista;
-	
-	public:
-	
-	void entradaDeDados() override {
+
+public:
+	void entradaDeDados() override
+	{
 		int N, dia, mes, ano;
 		cout << "Quantas datas deseja inserir? ";
 		cin >> N;
-		for(int i=0;i<N;i++){
+		for (int i = 0; i < N; i++)
+		{
 			cout << "Digite o dia, mes e ano da data" << endl;
 			cin >> dia >> mes >> ano;
-			lista.push_back(Data (dia,mes,ano));
+			lista.push_back(Data(dia, mes, ano));
 		}
 	}
-	
-	vector<Data> organizaDatas() {
+
+	vector<Data> organizaDatas()
+	{
 		int N = lista.size();
-		if(N==0){
+		if (N == 0)
+		{
 			cout << "Lista vazia" << endl;
 			return lista;
 		}
 		vector<Data> listaOrganizada = lista;
 		bool trocou;
-		for(int i=0;i<N-1;i++){
+		for (int i = 0; i < N - 1; i++)
+		{
 			trocou = false;
-			for(int j=0; j < N-i-1; j++){
-				if( Data::compara(listaOrganizada[j],listaOrganizada[j+1]) == 1){
-					swap(listaOrganizada[j],listaOrganizada[j+1]);
+			for (int j = 0; j < N - i - 1; j++)
+			{
+				if (Data::compara(listaOrganizada[j], listaOrganizada[j + 1]) == 1)
+				{
+					swap(listaOrganizada[j], listaOrganizada[j + 1]);
 					trocou = true;
 				}
 			}
-			if (trocou == false){
+			if (trocou == false)
+			{
 				break;
 			}
 		}
 		return listaOrganizada;
 	}
 
-	void mostraMediana() override {
+	void mostraMediana() override
+	{
 		vector<Data> listaOrganizada = organizaDatas();
 		int N = listaOrganizada.size();
-		if (N==0){
-			cout<< "Lista vazia";
+		if (N == 0)
+		{
+			cout << "Lista vazia";
 			return;
 		}
-		cout << "Mediana das datas: " << listaOrganizada[N/2].toString() << endl;
+		cout << "Mediana das datas: " << listaOrganizada[N / 2].toString() << endl;
 	}
-	
-	void mostraMenor() override {
+
+	void mostraMenor() override
+	{
 		vector<Data> listaOrganizada = organizaDatas();
-		if (listaOrganizada.size()==0){
-			cout<< "Lista vazia";
+		if (listaOrganizada.size() == 0)
+		{
+			cout << "Lista vazia";
 			return;
 		}
 		vector<Data>::iterator it = listaOrganizada.begin();
 		cout << "Menor das datas: " << it->toString() << endl;
 	}
-	void mostraMaior() override {
-				vector<Data> listaOrganizada = organizaDatas();
-		if (listaOrganizada.size()==0){
-			cout<< "Lista vazia";
+	void mostraMaior() override
+	{
+		vector<Data> listaOrganizada = organizaDatas();
+		if (listaOrganizada.size() == 0)
+		{
+			cout << "Lista vazia";
 			return;
 		}
 		vector<Data>::iterator it = listaOrganizada.end();
@@ -259,7 +280,7 @@ public:
 
 	void mostraMediana() override
 	{
-		//cout << "Mediana da lista de salários: " << endl;
+		// cout << "Mediana da lista de salários: " << endl;
 		vector<float> sortedSalarios = elementos;
 		sort(sortedSalarios.begin(), sortedSalarios.end()); // Ordena os salários em ordem crescente
 
@@ -285,7 +306,7 @@ public:
 
 	void mostraMenor() override
 	{
-		//cout << "Menor dos salários: " << endl;
+		// cout << "Menor dos salários: " << endl;
 		if (!elementos.empty())
 		{
 			float menorSalario = elementos[0];
@@ -305,7 +326,7 @@ public:
 	}
 	void mostraMaior() override
 	{
-		//cout << "Maior dos salários: " << endl;
+		// cout << "Maior dos salários: " << endl;
 		if (!elementos.empty())
 		{
 			float maiorSalario = elementos[0];
@@ -328,120 +349,153 @@ public:
 class ListaIdades : public Lista<int>
 {
 public:
-    void entradaDeDados() override
-    {
-        int n;
-        cout << "Quantas idades deseja inserir? ";
-        cin >> n;
+	void entradaDeDados() override
+	{
+		int n;
+		cout << "Quantas idades deseja inserir? ";
+		cin >> n;
 
-        for (int i = 0; i < n; i++)
-        {
-            int idade;
-            cout << "Digite a " << (i + 1) << "ª idade: ";
-            cin >> idade;
-            adicionar(idade);
-        }
-    }
+		for (int i = 0; i < n; i++)
+		{
+			int idade;
+			cout << "Digite a " << (i + 1) << "ª idade: ";
+			cin >> idade;
+			adicionar(idade);
+		}
+	}
 
-    void mostraMediana() override
-    {
-        //cout << "Aqui vai mostrar a mediana da lista de idades" << endl;
-        vector<int> sortedIdades = elementos;
-        sort(sortedIdades.begin(), sortedIdades.end()); // Ordena as idades em ordem crescente
+	void mostraMediana() override
+	{
+		// cout << "Aqui vai mostrar a mediana da lista de idades" << endl;
+		vector<int> sortedIdades = elementos;
+		sort(sortedIdades.begin(), sortedIdades.end()); // Ordena as idades em ordem crescente
 
-        int size = sortedIdades.size();
-        int medianAge;
+		int size = sortedIdades.size();
+		int medianAge;
 
-        if (size % 2 == 1)
-        {
-            // Quantidade ímpar de idades
-            medianAge = sortedIdades[size / 2];
-        }
-        else
-        {
-            // Quantidade par de idades
-            int middleIndex = size / 2;
-            int age1 = sortedIdades[middleIndex - 1];
-            int age2 = sortedIdades[middleIndex];
-            medianAge = (age1 + age2) / 2;
-        }
+		if (size % 2 == 1)
+		{
+			// Quantidade ímpar de idades
+			medianAge = sortedIdades[size / 2];
+		}
+		else
+		{
+			// Quantidade par de idades
+			int middleIndex = size / 2;
+			int age1 = sortedIdades[middleIndex - 1];
+			int age2 = sortedIdades[middleIndex];
+			medianAge = (age1 + age2) / 2;
+		}
 
-        cout << "Mediana das idades: " << medianAge << endl;
-    }
+		cout << "Mediana das idades: " << medianAge << endl;
+	}
 
-    void mostraMenor() override
-    {
-        //cout << "Aqui vai mostrar a menor das idades" << endl;
-        if (!elementos.empty())
-        {
-            int menorIdade = elementos[0];
-            for (const int &idade : elementos)
-            {
-                if (idade < menorIdade)
-                {
-                    menorIdade = idade;
-                }
-            }
-            cout << "Menor idade: " << menorIdade << endl;
-        }
-        else
-        {
-            cout << "A lista de idades está vazia." << endl;
-        }
-    }
-    void mostraMaior() override
-    {
-        //cout << "Aqui vai mostrar a maior das idades" << endl;
-        if (!elementos.empty())
-        {
-            int maiorIdade = elementos[0];
-            for (const int &idade : elementos)
-            {
-                if (idade > maiorIdade)
-                {
-                    maiorIdade = idade;
-                }
-            }
-            cout << "Maior idade: " << maiorIdade << endl;
-        }
-        else
-        {
-            cout << "A lista de idades está vazia." << endl;
-        }
-    }
+	void mostraMenor() override
+	{
+		// cout << "Aqui vai mostrar a menor das idades" << endl;
+		if (!elementos.empty())
+		{
+			int menorIdade = elementos[0];
+			for (const int &idade : elementos)
+			{
+				if (idade < menorIdade)
+				{
+					menorIdade = idade;
+				}
+			}
+			cout << "Menor idade: " << menorIdade << endl;
+		}
+		else
+		{
+			cout << "A lista de idades está vazia." << endl;
+		}
+	}
+	void mostraMaior() override
+	{
+		// cout << "Aqui vai mostrar a maior das idades" << endl;
+		if (!elementos.empty())
+		{
+			int maiorIdade = elementos[0];
+			for (const int &idade : elementos)
+			{
+				if (idade > maiorIdade)
+				{
+					maiorIdade = idade;
+				}
+			}
+			cout << "Maior idade: " << maiorIdade << endl;
+		}
+		else
+		{
+			cout << "A lista de idades está vazia." << endl;
+		}
+	}
 };
+
+int menuPrincipal()
+{
+	int opcao;
+
+	cout << "Qual lista você deseja criar?" << endl;
+	cout << "1 - Nomes" << endl;
+	cout << "2 - Datas" << endl;
+	cout << "3 - Salários" << endl;
+	cout << "4 - Idades" << endl;
+	cout << "5 - Sair" << endl;
+	cin >> opcao;
+
+	return opcao;
+}
 
 int main()
 {
-    // Criando as listas
-    ListaNomes listaNomes;
-    ListaDatas listaDatas;
-    ListaSalarios listaSalarios;
-    ListaIdades listaIdades;
+	// Criando as listas
+	ListaNomes listaNomes;
+	ListaDatas listaDatas;
+	ListaSalarios listaSalarios;
+	ListaIdades listaIdades;
 
-    // Pergunteando ao usuário quantos elementos deseja inserir em cada lista
-    listaNomes.entradaDeDados();
-    listaDatas.entradaDeDados();
-    listaSalarios.entradaDeDados();
-    listaIdades.entradaDeDados();
-    cout << endl;
-    // Mostrando as medianas, menores e maiores
-    listaNomes.mostraMediana();
-    listaNomes.mostraMenor();
-    listaNomes.mostraMaior();
-    cout << endl;
-    listaDatas.mostraMediana();
-    listaDatas.mostraMenor();
-    listaDatas.mostraMaior();
-    cout << endl;
-    listaSalarios.mostraMediana();
-    listaSalarios.mostraMenor();
-    listaSalarios.mostraMaior();
-    cout << endl;
-    listaIdades.mostraMediana();
-    listaIdades.mostraMenor();
-    listaIdades.mostraMaior();
-    cout << endl;
+	// Menu switch case
+	int opcao = 0;
+	while (opcao != 5)
+	{
+		opcao = menuPrincipal();
+		cout << endl;
 
-    return 0;
+		switch (opcao)
+		{
+		case 1:
+			listaNomes.entradaDeDados();
+			cout << endl;
+			listaNomes.mostraMediana();
+			listaNomes.mostraMenor();
+			listaNomes.mostraMaior();
+			break;
+		case 2:
+			listaDatas.entradaDeDados();
+			cout << endl;
+			listaDatas.mostraMediana();
+			listaDatas.mostraMenor();
+			listaDatas.mostraMaior();
+			break;
+		case 3:
+			listaSalarios.entradaDeDados();
+			cout << endl;
+			listaSalarios.mostraMediana();
+			listaSalarios.mostraMenor();
+			listaSalarios.mostraMaior();
+			break;
+		case 4:
+			listaIdades.entradaDeDados();
+			cout << endl;
+			listaIdades.mostraMediana();
+			listaIdades.mostraMenor();
+			listaIdades.mostraMaior();
+			break;
+		}
+		
+		cout << endl;
+	}
+
+	return 0;
 }
