@@ -453,6 +453,26 @@ public:
 			cout << "A lista de idades está vazia." << endl;
 		}
 	}
+	void listarEmOrdem() override
+	{
+		vector<int> sortedIdades = elementos;
+		sort(sortedIdades.begin(), sortedIdades.end()); // Ordena as Idades em ordem crescente
+
+		cout << "Lista de idades em ordem crescente: " << endl;
+		for (const float &idade : sortedIdades)
+		{
+			cout << "Salário: " << idade << endl;
+		}
+	}
+
+	void mostrarPrimeirosElementos(int N) override
+	{
+		// Mostrar primeiros N elementos
+		for (int i = 0; i < N && i < elementos.size(); i++)
+		{
+			cout << "Elemento " << i + 1 << ": " << elementos[i] << endl;
+		}
+	}
 };
 
 int menuPrincipal()
@@ -522,6 +542,14 @@ int main()
 			listaIdades.mostraMediana();
 			listaIdades.mostraMenor();
 			listaIdades.mostraMaior();
+			cout << endl;
+			listaIdades.listarEmOrdem();
+			cout << endl;
+
+			cout << "Quantos elementos você deseja mostrar?";
+			cin >> N;
+			cout << endl;
+			listaIdades.mostrarPrimeirosElementos(N);
 			break;
 		}
 
