@@ -113,7 +113,7 @@ public:
 	virtual void mostraMenor() = 0;
 	virtual void mostraMaior() = 0;
 	virtual void listarEmOrdem() = 0;
-	virtual void mostraPrimeirosElementos() = 0;
+	virtual void mostrarPrimeirosElementos(int N) = 0;
 };
 
 class ListaNomes : public Lista<string>
@@ -346,6 +346,27 @@ public:
 			cout << "A lista de salários está vazia." << endl;
 		}
 	}
+
+	void listarEmOrdem() override
+	{
+		vector<float> sortedSalarios = elementos;
+		sort(sortedSalarios.begin(), sortedSalarios.end()); // Ordena os salários em ordem crescente
+
+		cout << "Lista de salários em ordem crescente: " << endl;
+		for (const float &salario : sortedSalarios)
+		{
+			cout << "Salário: " << salario << endl;
+		}
+	}
+
+	void mostrarPrimeirosElementos(int N) override
+	{
+		// Mostrar primeiros N elementos
+		for (int i = 0; i < N && i < elementos.size(); i++)
+		{
+			cout << "Elemento " << i + 1 << ": " << elementos[i] << endl;
+		}
+	}
 };
 
 class ListaIdades : public Lista<int>
@@ -458,7 +479,7 @@ int main()
 	ListaIdades listaIdades;
 
 	// Menu switch case
-	int opcao = 0;
+	int opcao = 0, N = 0;
 	while (opcao != 5)
 	{
 		opcao = menuPrincipal();
@@ -486,6 +507,14 @@ int main()
 			listaSalarios.mostraMediana();
 			listaSalarios.mostraMenor();
 			listaSalarios.mostraMaior();
+			cout << endl;
+			listaSalarios.listarEmOrdem();
+			cout << endl;
+			
+			cout << "Quantos elementos você deseja mostrar?";
+			cin >> N;
+			cout << endl;
+			listaSalarios.mostrarPrimeirosElementos(N);
 			break;
 		case 4:
 			listaIdades.entradaDeDados();
