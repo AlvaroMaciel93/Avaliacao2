@@ -112,6 +112,8 @@ public:
 	virtual void mostraMediana() = 0;
 	virtual void mostraMenor() = 0;
 	virtual void mostraMaior() = 0;
+	virtual void listarEmOrdem() = 0;
+	virtual void mostraPrimeirosElementos() = 0;
 };
 
 class ListaNomes : public Lista<string>
@@ -493,7 +495,7 @@ int main()
 			listaIdades.mostraMaior();
 			break;
 		}
-		
+
 		cout << endl;
 	}
 
