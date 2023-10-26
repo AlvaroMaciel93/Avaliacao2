@@ -86,5 +86,14 @@ class ListaDatas  : public Lista<Data>{
 		for (auto it = listaOrganizada.begin(); it !=listaOrganizada.end(); it++)
 			cout << it->toString() << endl;
 	}
-	
+	void mostrarPrimeirosElementos(int N) override {
+		if N>=lista.size(){
+			for (auto it = lista.begin(); it !=lista.end(); it++)
+				cout << it->toString() << endl;
+		}
+		else{
+			for (auto it = lista.begin(); it !=lista.begin()+(N-1); it++)
+				cout << it->toString() << endl;
+		}
+	}
 };
