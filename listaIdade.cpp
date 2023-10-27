@@ -82,4 +82,23 @@ public:
             cout << "A lista de idades está vazia." << endl;
         }
     }
+    void listarEmOrdem() override
+    {
+        vector<int> sortedIdades = elementos;
+        sort(sortedIdades.begin(), sortedIdades.end()); // Ordena as Idades em ordem crescente
+
+        cout << "Lista de idades em ordem crescente: " << endl;
+        for (const int &idade : sortedIdades)
+        {
+            cout << "Idade: " << idade << endl;
+        }
+    }
+    void mostrarPrimeirosElementos(int N) override
+    {
+        // Mostrar primeiros N elementos
+        for (int i = 0; i < N && i < elementos.size(); i++)
+        {
+            cout << "Elemento " << i + 1 << ": " << elementos[i] << endl;
+        }
+    }
 };
