@@ -142,7 +142,6 @@ public:
 			cout << "A lista de nomes está vazia." << endl;
 			return;
 		}
-		// cout << "Calculando a mediana dos nomes..." << endl;
 		sort(elementos.begin(), elementos.end()); // Ordena a lista
 
 		int tamanho = elementos.size();
@@ -160,7 +159,6 @@ public:
 	}
 	void mostraMenor() override
 	{
-		// cout << "Mostrando o primeiro nome alfabeticamente..." << endl;
 		if (!this->elementos.empty())
 		{
 			cout << "Menor nome: " << *min_element(this->elementos.begin(), this->elementos.end()) << endl;
@@ -169,10 +167,26 @@ public:
 
 	void mostraMaior() override
 	{
-		// cout << "Mostrando o último nome alfabeticamente..." << endl;
 		if (!this->elementos.empty())
 		{
 			cout << "Maior nome: " << *max_element(this->elementos.begin(), this->elementos.end()) << endl;
+		}
+	}
+	void listarEmOrdem() override
+	{
+		cout << "Listando os nomes em ordem alfabética:" << endl;
+		sort(elementos.begin(), elementos.end());
+		for (const auto &elemento : elementos)
+		{
+			cout << elemento << ", ";
+		}
+		cout << endl;
+	}
+	void mostrarPrimeirosElementos(int N) override
+	{
+		for (int i = 0; i < N && i < elementos.size(); i++)
+		{
+			cout << "Elemento " << i + 1 << ": " << elementos[i] << endl;
 		}
 	}
 };
@@ -258,6 +272,30 @@ public:
 		vector<Data>::iterator it = listaOrganizada.end();
 		--it;
 		cout << "Maior das datas: " << it->toString() << endl;
+	}
+	void listarEmOrdem() override
+	{
+		vector<Data> listaOrganizada = organizaDatas();
+		if (listaOrganizada.size() == 0)
+		{
+			cout << "Lista vazia";
+			return;
+		}
+		for (auto it = listaOrganizada.begin(); it != listaOrganizada.end(); it++)
+			cout << it->toString() << endl;
+	}
+	void mostrarPrimeirosElementos(int N) override
+	{
+		if (N >= lista.size())
+		{
+			for (auto it = lista.begin(); it != lista.end(); it++)
+				cout << it->toString() << endl;
+		}
+		else
+		{
+			for (auto it = lista.begin(); it != lista.begin() + (N - 1); it++)
+				cout << it->toString() << endl;
+		}
 	}
 };
 
@@ -346,7 +384,6 @@ public:
 			cout << "A lista de salários está vazia." << endl;
 		}
 	}
-
 	void listarEmOrdem() override
 	{
 		vector<float> sortedSalarios = elementos;
@@ -358,7 +395,6 @@ public:
 			cout << "Salário: " << salario << endl;
 		}
 	}
-
 	void mostrarPrimeirosElementos(int N) override
 	{
 		// Mostrar primeiros N elementos
@@ -459,9 +495,9 @@ public:
 		sort(sortedIdades.begin(), sortedIdades.end()); // Ordena as Idades em ordem crescente
 
 		cout << "Lista de idades em ordem crescente: " << endl;
-		for (const float &idade : sortedIdades)
+		for (const int &idade : sortedIdades)
 		{
-			cout << "Salário: " << idade << endl;
+			cout << "Idade: " << idade << endl;
 		}
 	}
 
@@ -513,6 +549,14 @@ int main()
 			listaNomes.mostraMediana();
 			listaNomes.mostraMenor();
 			listaNomes.mostraMaior();
+			cout << endl;
+			listaNomes.listarEmOrdem();
+			cout << endl;
+
+			cout << "Quantos elementos você deseja mostrar?";
+			cin >> N;
+			cout << endl;
+			listaNomes.mostrarPrimeirosElementos(N);
 			break;
 		case 2:
 			listaDatas.entradaDeDados();
@@ -520,6 +564,14 @@ int main()
 			listaDatas.mostraMediana();
 			listaDatas.mostraMenor();
 			listaDatas.mostraMaior();
+			cout << endl;
+			listaDatas.listarEmOrdem();
+			cout << endl;
+
+			cout << "Quantos elementos você deseja mostrar?";
+			cin >> N;
+			cout << endl;
+			listaDatas.mostrarPrimeirosElementos(N);
 			break;
 		case 3:
 			listaSalarios.entradaDeDados();
@@ -530,7 +582,7 @@ int main()
 			cout << endl;
 			listaSalarios.listarEmOrdem();
 			cout << endl;
-			
+
 			cout << "Quantos elementos você deseja mostrar?";
 			cin >> N;
 			cout << endl;
