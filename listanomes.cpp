@@ -41,4 +41,17 @@ class ListaNomes : public Lista<string> {
 				cout << "Maior nome: " << *max_element(this->elementos.begin(), this->elementos.end()) << endl;
 			}
 		}
+		void listarEmOrdem() override {
+        		cout << "Listando os nomes em ordem alfabética:" << endl;
+        		sort(elementos.begin(), elementos.end());
+        		for (const auto &elemento : elementos) {
+            			cout << elemento << ", ";
+        		}
+        		cout << endl;
+   		}
+		void mostrarPrimeirosElementos(int N) override {
+			for (int i = 0; i < N && i < elementos.size(); i++) {
+				cout << "Elemento " << i + 1 << ": " << elementos[i] << endl;
+			}
+		}
 };
